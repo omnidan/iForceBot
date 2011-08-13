@@ -20,5 +20,4 @@ class Msg(handler.Handler):
 		
 		if len(msg_words) >= 1:
 			if self.commands.getcmd(msg_words[0], 'msg'):
-				if msg_words[1] == msg_stuff:
-					self.commands.privmsg(target, "%s: %d" % (nick, msg_stuff))
+				self.commands.privmsg(msg_words[1], "<%s> %s" % (nick, ' '.join(msg_words[2:])))

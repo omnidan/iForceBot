@@ -7,3 +7,13 @@
 [13.08.2011 12:39:27]<TourBot> Daniel0108: Error: I am only a bot, please don't think I'm intelligent :)
 [13.08.2011 12:39:28]<KowalskiJ> Daniel0108: Error: "setrank" is not a valid command.
 [13.08.2011 12:39:33]<Mkaysi> Yes
+[13.08.2011 13:10:32]<Mkaysi> Ah, your bot
+[13.08.2011 13:10:45]<Mkaysi> /kick TheDarkForce don't IRC as root :P
+[13.08.2011 13:11:02]<Daniel0108> lolol
+[13.08.2011 13:11:08]<Daniel0108> I IRC as root :p
+[13.08.2011 13:11:48]<Mkaysi> Daniel0108: But you don't have ident :O
+[13.08.2011 13:12:12]<LayBot> 4ba0:cafe:4d8::1 PRIVMSG ##Daniel0108 :/me wants to IRC as root too
+[13.08.2011 13:12:16]<LayBot> 4ba0:cafe:4d8::1 PRIVMSG ##Daniel0108 :daniel0108@github: Daniel0108 pushed to master at Daniel0108/iForceBot <http://tinyurl.com/3nb5aqv>
+[13.08.2011 13:12:18]<KowalskiJ> Title: Comparing 5f17b2c656...196c5a2e06 for Daniel0108's iForceBot - GitHub (at tinyurl.com)
+[13.08.2011 13:12:18]<Mkaysi> LayBot: NO!
+[13.08.2011 13:44:59]<Daniel0108> -join ##iforcebot
