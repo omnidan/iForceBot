@@ -13,11 +13,12 @@ class Msg(handler.Handler):
 		msg_words = msg.split(' ')
 		nick = line.split(':')[1].split('!')[0]
 		target = words[2]
-		msg_stuff = words[2]
+		msg_stuff = words[1]
 
 		if target.find('#') != 0:
 			target = nick
 		
 		if len(msg_words) >= 1:
-			if self.commands.getcmd(msg_words[0], 'msg', msg_stuff):
-				self.commands.privmsg(target, "%s: %d" % (nick, msg_stuff))
+			if self.commands.getcmd(msg_words[0], 'msg'):
+				if msg_words[1] == msg_stuff:
+					self.commands.privmsg(target, "%s: %d" % (nick, msg_stuff))
