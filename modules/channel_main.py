@@ -27,7 +27,7 @@ class Channel_main(handler.Handler):
 			temp_str = self.client.properties.get('prefix')
 			temp_str += 'part'
 			if msg_words[0] == temp_str:
-				self.commands.part(msg_words[1], "Part command")
+				self.commands.part(msg_words[1], "Parting")
 			temp_str = self.client.properties.get('prefix')
 			temp_str += 'cycle'
 			if msg_words[0] == temp_str:
