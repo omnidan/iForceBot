@@ -17,3 +17,5 @@
 [13.08.2011 13:12:18]<KowalskiJ> Title: Comparing 5f17b2c656...196c5a2e06 for Daniel0108's iForceBot - GitHub (at tinyurl.com)
 [13.08.2011 13:12:18]<Mkaysi> LayBot: NO!
 [13.08.2011 13:44:59]<Daniel0108> -join ##iforcebot
+[13.08.2011 13:59:26]<LayBot> 4ba0:cafe:4d8::1 PRIVMSG ##Daniel0108 :daniel0108@github: Daniel0108 pushed to master at Daniel0108/iForceBot <http://tinyurl.com/3cjyjcb>
+[13.08.2011 13:59:28]<KowalskiJ> Title: Comparing ffda7d8a08...b29eafa289 for Daniel0108's iForceBot - GitHub (at tinyurl.com)

@@ -4,7 +4,7 @@ Starting the bot:
 Edit ExampleBot.py to fit your needs, do:
 python ExampleBot.py
 Linux users:
-./StartBot.sh <botname>
+./startbot <botname>
 --
 Coding modules:
 Put modules into ./modules/, copy an example module (eg, ping.py) to yourmodule.py
