@@ -189,6 +189,9 @@ class Commands(object):
 	def kick(self, channel, target, message):
 		self.client.send("KICK {0} {1} :{2}".format(channel, target, message))
 
+        def remove(self, channel, target, message):
+                self.client.send("REMOVE {0} {1} :{2}".format(channel, target, message))
+
 	def getcmd(self, message, cmd):
 		message = message.lower()
 		cmd = cmd.lower()
