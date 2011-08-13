@@ -65,4 +65,13 @@ class Channel_op(handler.Handler):
 			temp_str += 'kick'
                         if msg_words[0] == temp_str:
                                 if len(msg_words) >= 2:
-                                        self.commands.kick(target, msg_words[1], msg_words[2])
+                                        self.commands.kick(target, msg_words[1], msg_words[2])      
+			if len(msg_words) >= 1:
+				if self.commands.getcmd(msg_words[0], 'mode'):
+					self.commands.mode("%s" % ' '.join(msg_words[1:]), target)
+			temp_str = self.client.properties.get('prefix')
+			temp_str += 'kban'
+			if msg_words[0] == temp_str:
+				if len(msg_words) >= 2:
+					self.commands.kick(target, msg_words[1], msg_words[2])
+					self.commands.mode("+b %s!*@*" % msg_words[1], target)
