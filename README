@@ -1,0 +1,27 @@
+iForceBot by Daniel Bugl (Daniel0108)
+===
+Starting the bot:
+Edit ExampleBot.py to fit your needs, do:
+python ExampleBot.py
+--
+Coding modules:
+Put modules into ./modules/, copy an example module (eg, ping.py) to yourmodule.py
+and start editing it! Then add it to the auto-load modules in ExampleBot.py
+
+~~
+
+Ranks:
+0:Guest
+1:User
+2:VIP
+3:Moderator
+4:Operator
+5:Admin
+6:Leader
+7:Master
+--
+Documentation:
+self.commands.getrank(nick)
+self.commands.setrank(nick, rank)
+
+~~
