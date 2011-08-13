@@ -5,13 +5,13 @@ TheDarkForce.py
 *.pyc
 
 # Logs
-logs/*
+logs/*.txt
 
 # Factoids
-people/*
+people/*.txt
 
 # Goodies
-goodbot/*
+goodbot/*.txt
 
 # TheEyes' bot files (mode commit)
 iForceBot.py
