@@ -6,7 +6,7 @@
 import handler
 
 
-class Msgy(handler.Handler):
+class msg(handler.Handler):
 	def privmsg(self, words):
 		line = ' '.join(words)
 		msg = line.split(':')[2]
@@ -18,5 +18,5 @@ class Msgy(handler.Handler):
 			target = nick
 		
 		if len(msg_words) >= 1:
-			if self.commands.getcmd(msg_words[0], 'msg',) == 1:
-				self.commands.privmsg(nick, "%s: MESSAGE" % nick)
+			if self.commands.getcmd(msg_words[0], 'msg') == 1:
+				self.commands.privmsg(target, "%s: pong" % nick)
