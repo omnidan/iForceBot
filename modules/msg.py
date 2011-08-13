@@ -18,5 +18,5 @@ class msg(handler.Handler):
 			target = nick
 		
 		if len(msg_words) >= 1:
-			if self.commands.getcmd(msg_words[0], 'msg') == 1:
-				self.commands.privmsg(target, "%s: pong" % nick)
+			if self.commands.getcmd(msg_words[0], 'msg'):
+				self.commands.privmsg(target, "%s: MSG" % nick)
