@@ -67,3 +67,153 @@
 [13.08.2011 16:26:42]<MichealH> -services./Wallops- Synced with network in 0.00 seconds.
 [13.08.2011 16:26:46]<MichealH> Fastest there is :D
 [13.08.2011 16:28:27]<Supernova> MichealH, boring
+[13.08.2011 16:33:32]<Daniel0108> MichealH: it's fast because it does it from local to local ;)
+[13.08.2011 16:33:33]<LayBot> 4ba0:cafe:4d8::1 PRIVMSG ##Daniel0108 :daniel0108@github: Daniel0108 pushed to master at Daniel0108/iForceBot <http://tinyurl.com/3tz59qj>
+[13.08.2011 16:33:36]<KowalskiJ> Title: Comparing 32d8a419ae...561d0c43d4 for Daniel0108's iForceBot - GitHub (at tinyurl.com)
+[13.08.2011 16:34:45]<MichealH> Daniel0108: Nope
+[13.08.2011 16:34:53]<MichealH> Server -> My PC :p
+[13.08.2011 16:34:58]<MichealH> Okay, Its LAN
+[13.08.2011 16:35:00]<Daniel0108> yes, that's still LAN
+[13.08.2011 16:35:00]<Daniel0108> :p
+[13.08.2011 16:35:01]<Daniel0108> l
+[13.08.2011 16:35:08]<MichealH> But not localhost -> localhost :p
+[13.08.2011 16:35:13]<MichealH> Supernova: You are
+[13.08.2011 16:35:24]<Supernova> MichealH: Nope.
+[13.08.2011 16:35:53]<MichealH> Daniel0108: What IS the error here?
+[13.08.2011 16:35:55]<MichealH> * Sectron (sectron@services.) has joined #test
+[13.08.2011 16:35:55]<MichealH> * services. gives channel operator status to Sectron
+[13.08.2011 16:35:55]<MichealH> <MichealH> d-exec self.load('M_NickServ')
+[13.08.2011 16:35:55]<MichealH> * Debug: <module 'M_NickServ' from '/home/michealh/sectron/M_NickServ.pyc'>
+[13.08.2011 16:35:55]<MichealH> <MichealH> d-exec self.join(self.nickserv,'#test')
+[13.08.2011 16:35:56]<MichealH> * Sectron has quit (*.net *.split)
+[13.08.2011 16:36:07]<MichealH> AttributeError: '_socketobject' object has no attribute 'nickserv'
+[13.08.2011 16:36:18]<MichealH> Thats when It has the hook of onPrivmsg()
+[13.08.2011 16:36:23]<MichealH> :/
+[13.08.2011 16:36:32]<Daniel0108> MichealH: it's because there is no variable named nickserv
+[13.08.2011 16:36:46]<MichealH> I remove 4 things out to stop it complaining about it sending 8 arguments instead of 4 :p
+[13.08.2011 16:36:53]<MichealH> Daniel0108: But there is :o
+[13.08.2011 16:36:55]<MichealH> Oh wait
+[13.08.2011 16:37:00]<MichealH> I coulda typo's
+[13.08.2011 16:37:01]<Daniel0108> not in that class
+[13.08.2011 16:38:27]<MichealH> Cool, It did not netsplit this time :D
+[13.08.2011 16:38:33]<MichealH> But it still shown the same error
+[13.08.2011 16:38:43]<MichealH> <MichealH> d-exec self.join(self.nickserv,'#test')
+[13.08.2011 16:38:43]<MichealH> * Debug ERROR: '_socketobject' object has no attribute 'nickserv'
+[13.08.2011 16:38:44]<MichealH> :p
+[13.08.2011 16:39:07]<Daniel0108> MichealH: there is no nickserv in the class :p
+[13.08.2011 16:40:16]<MichealH> <MichealH> d-exec self.join(self.mainclient,'#test2')
+[13.08.2011 16:40:17]<MichealH> * Debug: None
+[13.08.2011 16:40:20]<MichealH> You MUST be right
+[13.08.2011 16:40:23]<MichealH> Hmm
+[13.08.2011 16:40:43]<MichealH> More try:'s are needed  :p
+[13.08.2011 16:40:45]<Daniel0108> do d-exec dir(self)
+[13.08.2011 16:41:12]<MichealH> * Debug: ['__doc__', '__getattr__', '__init__', '__module__', '__repr__', '_collect_incoming_data', '_fileno', '_get_data', '_map', 'ac_in_buffer', 'ac_in_buffer_size', 'ac_out_buffer_size', 'accept', 'accepting', 'accountlogin', 'accountlogout', 'add_channel', 'addr', 'bind', 'chanstore', 'chghost', 'clientn', 'close', 'close_when_done', 'closing', 'collect_incoming_data', 'connect', 'connected', 'create_socket', 'createclient', 'data', 'debug
+[13.08.2011 16:41:12]<MichealH> ', 'del_channel', 'destroyclient', 'dis
+[13.08.2011 16:42:26]<MichealH> <MichealH> d-exec dir(self.mainclient)
+[13.08.2011 16:42:26]<MichealH> * Debug: ['__add__', '__class__', '__contains__', '__delattr__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__getnewargs__', '__getslice__', '__gt__', '__hash__', '__init__', '__le__', '__len__', '__lt__', '__mod__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__rmod__', '__rmul__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '_formatter_field_name_split', '_f
+[13.08.2011 16:42:26]<MichealH> ormatter_parser', 'capitalize', 'center
+[13.08.2011 16:42:26]<MichealH> <MichealH> d-exec self.mainclient
+[13.08.2011 16:42:28]<MichealH> * Debug: 31D100001
+[13.08.2011 16:42:32]<MichealH> Hmm
+[13.08.2011 16:42:42]<MichealH> Ahh
+[13.08.2011 16:42:48]<MichealH> I have the full dir(self)
+[13.08.2011 16:43:14]<MichealH> Maybe load() is a little borked
+[13.08.2011 16:43:41]<LayBot> 4ba0:cafe:4d8::1 PRIVMSG ##Daniel0108 :daniel0108@github: Daniel0108 deleted branch testing at Daniel0108/iForceBot <https://github.com/Daniel0108>
+[13.08.2011 16:43:44]<KowalskiJ> Title: Daniel0108's Profile - GitHub (at github.com)
+[13.08.2011 16:52:03]<MichealH> * Sectron (sectron@services.) has joined #test
+[13.08.2011 16:52:03]<MichealH> * services. gives channel operator status to Sectron
+[13.08.2011 16:52:03]<MichealH> -services./Wallops- Synced with network in 0.00 seconds.
+[13.08.2011 16:52:03]<MichealH> <MichealH> d-exec self.load('M_NickServ')
+[13.08.2011 16:52:03]<MichealH> * NickServ (NickServ@services.) has joined #test
+[13.08.2011 16:52:03]<MichealH> * services. gives channel operator status to NickServ
+[13.08.2011 16:52:06]<MichealH> YESYESYES
+[13.08.2011 16:52:08]<MichealH> :D
+[13.08.2011 16:52:20]<MichealH> Daniel0108:
+[13.08.2011 16:52:23]<MichealH> :D
+[13.08.2011 16:52:33]<MichealH> The load() was borked
+[13.08.2011 16:52:42]<MichealH> It did not call modinit on the plugin when loaded
+[13.08.2011 16:52:44]<MichealH> DUH
+[13.08.2011 16:52:47]<MichealH> Stupid me
+[13.08.2011 16:52:48]<MichealH> :p
+[13.08.2011 16:54:09]<LayBot> 4ba0:cafe:4d8::1 PRIVMSG ##Daniel0108 :daniel0108@github: Daniel0108 created branch master at Daniel0108/Uni <https://github.com/Daniel0108/Uni/compare/master> || Daniel0108 created repository Uni <https://github.com/Daniel0108/Uni>
+[13.08.2011 16:54:12]<KowalskiJ> Title: Comparing master...master for Daniel0108's Uni - GitHub (at github.com)
+[13.08.2011 16:56:17]<Daniel0108> MichealH: https://github.com/Daniel0108/Uni :p
+[13.08.2011 16:56:19]<KowalskiJ> Title: Daniel0108/Uni - GitHub (at github.com)
+[13.08.2011 16:56:31]<Daniel0108> that was the version I used for the spam bots and on FOSSUnite
+[13.08.2011 16:56:33]<Daniel0108> MichealH: ^
+[13.08.2011 16:56:55]<MichealH> Daniel0108: This is different
+[13.08.2011 16:57:00]<MichealH> WAY different :p
+[13.08.2011 16:57:39]<Daniel0108> MichealH: hmm? :p
+[13.08.2011 16:57:47]<Daniel0108> I thought it's just a module
+[13.08.2011 16:57:51]<Daniel0108> you can easily move to Uni
+[13.08.2011 16:57:56]<Daniel0108> also, I fixed some small issues :p
+[13.08.2011 16:58:03]<Daniel0108> and mine works out-of-the-box
+[13.08.2011 16:58:35]<MichealH> Mine did :p
+[13.08.2011 16:59:05]<Daniel0108> oh and.. another thing :p
+[13.08.2011 16:59:31]<Daniel0108> I removed d-exec
+[13.08.2011 16:59:36]<LayBot> 4ba0:cafe:4d8::1 PRIVMSG ##Daniel0108 :daniel0108@github: Daniel0108 forked bikcmp/Solus <https://github.com/Daniel0108> || Daniel0108 pushed to master at Daniel0108/Uni <http://tinyurl.com/3ju8ahm>
+[13.08.2011 16:59:38]<KowalskiJ> Title: Daniel0108's Profile - GitHub (at github.com)
+[13.08.2011 17:00:08]<Daniel0108> wait what?
+[13.08.2011 17:00:11]<Daniel0108> I didn't fork it :o
+[13.08.2011 17:00:34]<Daniel0108> lol
+[13.08.2011 17:05:32]<MichealH> I IMPLEMENTED.....
+[13.08.2011 17:05:35]<MichealH> A reloader
+[13.08.2011 17:05:37]<MichealH> :P
+[13.08.2011 17:05:38]<MichealH> <MichealH> d-exec self.reload('M_NickServ')
+[13.08.2011 17:05:39]<MichealH> * NickServ has quit (Shutting Down)
+[13.08.2011 17:05:39]<MichealH> * NickServ (NickServ@services.) has joined #test
+[13.08.2011 17:05:39]<MichealH> * services. gives channel operator status to NickServ
+[13.08.2011 17:06:24]<Daniel0108> I think I already have that :p
+[13.08.2011 17:06:28]<Daniel0108> not too sure about it, though
+[13.08.2011 17:06:50]<Daniel0108> yes, I have that
+[13.08.2011 17:07:02]<Daniel0108> self.modreload("MODULENAME")
+[13.08.2011 17:08:03]<MichealH> Yeah, this was based off annother of bikcmp's branches
+[13.08.2011 17:08:11]<MichealH> I used his branch for help
+[13.08.2011 17:08:17]<MichealH> But I coded the rest myself :P
+[13.08.2011 17:08:55]<Daniel0108> lool
+[13.08.2011 17:31:01]<LayBot> 4ba0:cafe:4d8::1 PRIVMSG ##Daniel0108 :daniel0108@github: Daniel0108 commented on pull request 1 on Daniel0108/iForceBot <http://tinyurl.com/3lsqmy8>
+[13.08.2011 17:31:04]<KowalskiJ> Title: #1: Added mode. by TheEyes for Daniel0108/iForceBot - Pull Request - GitHub (at tinyurl.com)
+[13.08.2011 17:33:29]<MichealH> <NickServ> Register: MichealH
+[13.08.2011 17:33:31]<MichealH> YESH
+[13.08.2011 17:33:50]<MichealH> >NickServ< logout
+[13.08.2011 17:33:50]<MichealH> -NickServ- You are now logged out.
+[13.08.2011 17:33:52]<MichealH> YESH
+[13.08.2011 17:49:22]<MichealH> >NickServ< identify ****
+[13.08.2011 17:49:22]<MichealH> -NickServ- You are now identified for MichealH.
+[13.08.2011 17:49:24]<MichealH> YEY
+[13.08.2011 17:49:25]<MichealH> :D
+[13.08.2011 17:50:28]<MichealH> HostServ time :P
+[13.08.2011 17:50:34]<MichealH> I wanna vhost :p
+[13.08.2011 17:50:43]<MichealH> I coul d-exec it, but I want it official
+[13.08.2011 17:50:44]<MichealH> :p
+[13.08.2011 17:51:22]<Supernova> MichealH: iForceBot is working now :-P
+[13.08.2011 17:51:50]<LayBot> 4ba0:cafe:4d8::1 PRIVMSG ##Daniel0108 :daniel0108@github: Daniel0108 pushed to master at Daniel0108/iForceBot <http://tinyurl.com/3r6ap6x> || Daniel0108 merged pull request 1 on Daniel0108/iForceBot <https://github.com/Daniel0108/iForceBot/pull/1>
+[13.08.2011 17:51:52]<KowalskiJ> Title: Comparing 561d0c43d4...aaec7f683e for Daniel0108's iForceBot - GitHub (at tinyurl.com)
+[13.08.2011 17:52:59]<MichealH> * michealh. :is now your hidden host (set by services.)
+[13.08.2011 17:53:03]<MichealH> I de-exec'd that
+[13.08.2011 17:53:19]<MichealH> Supernova: iForceBot is? :P
+[13.08.2011 17:53:38]<Supernova> Daniel0108's bot, but I helped with some of the stuff
+[13.08.2011 17:53:44]<Supernova> Kicking and modes
+[13.08.2011 17:53:48]<MichealH> Ahh
+[13.08.2011 17:53:50]<MichealH> Okay
+[13.08.2011 17:53:54]<Supernova> See
+[13.08.2011 17:53:56]<Supernova> ?part
+[13.08.2011 17:54:00]<Supernova> :-
+[13.08.2011 17:54:11]<Supernova> That's broken.
+[13.08.2011 17:54:20]<MichealH> lolfail?
+[13.08.2011 17:54:21]<MichealH> :P
+[13.08.2011 17:54:25]<MichealH> I can help you's
+[13.08.2011 17:54:40]<MichealH> After I made my Python IRC Services
+[13.08.2011 17:54:43]<MichealH> P:
+[13.08.2011 17:55:01]<Supernova> ?load channel_amin
+[13.08.2011 17:55:06]<Supernova> ?load channel_main
+[13.08.2011 17:55:10]<Supernova> ?part
+[13.08.2011 17:55:15]<Supernova> :-
+[13.08.2011 17:55:55]<Supernova> ?load channel_main
+[13.08.2011 17:55:59]<Supernova> ?part
+[13.08.2011 17:56:11]<Supernova> ?part ##Daniel0108
+[13.08.2011 17:56:18]<Supernova> -
+[13.08.2011 18:01:56]<LayBot> 4ba0:cafe:4d8::1 PRIVMSG ##Daniel0108 :daniel0108@github: Daniel0108 started following tito <https://github.com/Daniel0108>
+[13.08.2011 18:01:59]<KowalskiJ> Title: Daniel0108's Profile - GitHub (at github.com)
+[13.08.2011 18:04:39]<Daniel0108> lolol
+[13.08.2011 18:04:41]<Daniel0108> LayBot: stalker!

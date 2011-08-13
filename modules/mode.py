@@ -16,7 +16,7 @@ class Mode(handler.Handler):
                 target = words[2]
 
                 if target.find('#') != 0:
-
-                if len(msg_words) >= 1:
-                        if self.commands.getcmd(msg_words[0], 'mode'):
-                                self.commands.mode("%s" % msg_words[1], target)
+			target = nick
+		if len(msg_words) >= 1:
+			if self.commands.getcmd(msg_words[0], 'mode'):
+				self.commands.mode("%s" % ' '.join(msg_words[1:]), target)
