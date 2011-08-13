@@ -41,7 +41,9 @@ class Module_loader(handler.Handler):
 
 					self.client.unload_module(msg_words[1])
 					self.commands.notice(nick, 'Module {0} unloaded.'.format(msg_words[1]))
-					return True 
+					return True
+				elif msg_words[1] == 'module_loader':
+					self.commands.notice(nick, 'ERROR: Cannot unload module module_loader'.format(msg_words[1])) 
 
 			temp_str = self.client.properties.get('prefix')
 			temp_str += 'reload'
@@ -52,3 +54,5 @@ class Module_loader(handler.Handler):
 					self.client.unload_module(msg_words[1])
 					self.client.load_module(msg_words[1])
 					self.commands.notice(nick, 'Module {0} reloaded.'.format(msg_words[1]))
+				elif msg_words[1] == 'module_loader':
+					self.commands.notice(nick, 'ERROR: Cannot reload module module_loader'.format(msg_words[1]))
