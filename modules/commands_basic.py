@@ -19,9 +19,7 @@ class Commands_basic(handler.Handler):
                 if len(msg_words) >= 1 and self.commands.getrank(nick) >= 4:
                         if self.commands.getcmd(msg_words[0], 'invite'):
                                 self.commands.invite(target, "%s" % msg_words[1])
-
-                if target.find('#') != 0:
-                        target = nick
+           
                 if len(msg_words) >= 1 and self.commands.getrank(nick) >= 5:
                         if self.commands.getcmd(msg_words[0], 'nick'):
                                 self.commands.nick("%s" % msg_words[1])
