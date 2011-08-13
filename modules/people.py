@@ -15,12 +15,11 @@ class People(handler.Handler):
 		target = words[2]
 
 		if target.find('#') != 0:
-
 			target = nick
 		
 		if len(msg_words) >= 1:
-			if msg_words[0][0:1] == self.client.properties.get('prefix'):
-				command = msg_words[0].replace(self.client.properties.get('prefix'),'',1)
+			if msg_words[0][0:1] == self.client.properties.get('prefix_people'):
+				command = msg_words[0].replace(self.client.properties.get('prefix_people'),'',1)
 				command = command.lower()
 				if command == 'me':
 					self.commands.privmsg(target, "You are {0} :)".format(nick))

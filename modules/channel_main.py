@@ -15,15 +15,15 @@ class Channel_main(handler.Handler):
 		target = words[2]
 
 		if target.find('#') != 0:
-
 			target = nick
 		
-		if len(msg_words) >= 1:
+		if len(msg_words) < 1:
+			msg_words.append(target)
+		if self.commands.getrank(nick) >= 3:
 			temp_str = self.client.properties.get('prefix')
 			temp_str += 'join'
 			if msg_words[0] == temp_str:
 				self.commands.join(msg_words[1])
-				#self.commands.privmsg("ChanServ", "OP {0} {1}".format(msg_words[1], self.client.nick))
 			temp_str = self.client.properties.get('prefix')
 			temp_str += 'part'
 			if msg_words[0] == temp_str:
@@ -31,5 +31,5 @@ class Channel_main(handler.Handler):
 			temp_str = self.client.properties.get('prefix')
 			temp_str += 'cycle'
 			if msg_words[0] == temp_str:
-				self.commands.part(target, "Cycling")
-				self.commands.join(target)
+				self.commands.part(msg_words[1], "Cycling")
+				self.commands.join(msg_words[1])

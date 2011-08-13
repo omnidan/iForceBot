@@ -15,7 +15,6 @@ class Log_main(handler.Handler):
 		target = words[2]
 
 		if target.find('#') != 0:
-
 			target = nick
 		
 		import time

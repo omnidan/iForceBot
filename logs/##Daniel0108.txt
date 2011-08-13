@@ -19,3 +19,51 @@
 [13.08.2011 13:44:59]<Daniel0108> -join ##iforcebot
 [13.08.2011 13:59:26]<LayBot> 4ba0:cafe:4d8::1 PRIVMSG ##Daniel0108 :daniel0108@github: Daniel0108 pushed to master at Daniel0108/iForceBot <http://tinyurl.com/3cjyjcb>
 [13.08.2011 13:59:28]<KowalskiJ> Title: Comparing ffda7d8a08...b29eafa289 for Daniel0108's iForceBot - GitHub (at tinyurl.com)
+[13.08.2011 14:04:33]<LayBot> 4ba0:cafe:4d8::1 PRIVMSG ##Daniel0108 :daniel0108@github: Daniel0108 pushed to master at Daniel0108/iForceBot <http://tinyurl.com/3lahsvv>
+[13.08.2011 14:04:36]<KowalskiJ> Title: Comparing b29eafa289...32d8a419ae for Daniel0108's iForceBot - GitHub (at tinyurl.com)
+[13.08.2011 15:52:18]<LayBot> 4ba0:cafe:4d8::1 PRIVMSG ##Daniel0108 :touchlaydan@twitter: TouchLayDan: Most people don't know what the internet really means. It means that everybody can control everything from everywhere. #Thoughts #Internet <http://tinyurl.com/3jo3cks>
+[13.08.2011 15:52:20]<KowalskiJ> Title: Twitter / Daniel Bugl: Most people don't know wha ... (at tinyurl.com)
+[13.08.2011 15:57:36]<LayBot> 4ba0:cafe:4d8::1 PRIVMSG ##Daniel0108 :daniel0108@github: Daniel0108 commented on issue 5 on Daniel0108/MineCommunity <http://tinyurl.com/3f8yejh>
+[13.08.2011 15:57:38]<KowalskiJ> Title: #5: JAVA.IO.IOEXCEPTION: BAD COMPRESSED DATA FORMAT - Issues - Daniel0108/MineCommunity - GitHub (at tinyurl.com)
+[13.08.2011 16:02:47]<LayBot> 4ba0:cafe:4d8::1 PRIVMSG ##Daniel0108 :daniel0108@github: Daniel0108 pushed to master at TheEyes/iForceBot <http://tinyurl.com/3dzv47y>
+[13.08.2011 16:02:49]<KowalskiJ> Title: Comparing 2af9d99d3b...ee0db132e2 for TheEyes's iForceBot - GitHub (at tinyurl.com)
+[13.08.2011 16:03:18]<Mkaysi> Daniel0108: Can I ask why you are pushing to fork?
+[13.08.2011 16:03:42]<Supernova> Mkaysi, my fork is more updated than his
+[13.08.2011 16:03:59]<Daniel0108> 1. mine is not a fork, it's the original one
+[13.08.2011 16:04:04]<Daniel0108> Mkaysi: I was helping him :p
+[13.08.2011 16:04:27]<Mkaysi> It should work like: 1. Someone creates repo. 2. Someone forks it. 3. Forker sends pull request. 4. Original accepts it. 5. Original continues in original repo.
+[13.08.2011 16:04:35]<Mkaysi> Daniel0108: I know but, <LayBot> daniel0108@github: Daniel0108 pushed to master at TheEyes/iForceBot <http://tinyurl.com/3dzv47y>
+[13.08.2011 16:04:36]<Mkaysi> <K
+[13.08.2011 16:04:38]<KowalskiJ> Title: Comparing 2af9d99d3b...ee0db132e2 for TheEyes's iForceBot - GitHub (at tinyurl.com)
+[13.08.2011 16:04:56]<Mkaysi> ACTION doesn't see any sense in pushing to fork.
+[13.08.2011 16:05:07]<Mkaysi> Forker should do merging original to it
+[13.08.2011 16:05:27]<Daniel0108> Mkaysi: I know, it works like that, but it was a small issue and I just fixed it :p
+[13.08.2011 16:05:43]<MichealH> I am making my own Python IRC Services :3
+[13.08.2011 16:06:26]<Mkaysi> ACTION doesn't understand why issue was fixed in fork, not in mainstream.
+[13.08.2011 16:06:37]<Daniel0108> Mkaysi: the issue was not there in mainstream :PP
+[13.08.2011 16:06:47]<Daniel0108> he created the issue and couldn't figure out how to fix it
+[13.08.2011 16:07:00]<Mkaysi> Expection: Supybot, where forker has send one full page of it's issue tracker.
+[13.08.2011 16:07:10]<Mkaysi> Ok
+[13.08.2011 16:07:35]<Daniel0108> it has more issues, btw, but I don't want to fix them :p
+[13.08.2011 16:08:02]<Mkaysi> ACTION has thought that fixing them is work of forker
+[13.08.2011 16:08:26]<Mkaysi> I am only translating and keeping my forks up-to-date.
+[13.08.2011 16:10:59]<MichealH> <MichealH> d-exec self.load('M_NickServ')
+[13.08.2011 16:10:59]<MichealH> * Debug: <module 'M_NickServ' from '/home/michealh/sectron/M_NickServ.py'>
+[13.08.2011 16:11:03]<MichealH> YEAH :D
+[13.08.2011 16:11:14]<MichealH> Sectron FTW
+[13.08.2011 16:13:09]<MichealH> <MichealH> d-exec self.join(self.NickServ,'#test')
+[13.08.2011 16:13:10]<MichealH> * Sectron has quit (*.net *.split)
+[13.08.2011 16:13:13]<MichealH> lolfail
+[13.08.2011 16:13:13]<MichealH> :D
+[13.08.2011 16:13:45]<Mkaysi> ACTION continues translating Services plugin in Limnoria.
+[13.08.2011 16:16:28]<MichealH> * Sectron (sectron@services.) has joined #test
+[13.08.2011 16:16:28]<MichealH> * services. gives channel operator status to Sectron
+[13.08.2011 16:16:28]<MichealH> -services./Wallops- Synced with network in 0.03 seconds.
+[13.08.2011 16:16:30]<MichealH> Awesome
+[13.08.2011 16:21:08]<Mkaysi> ACTION loves running check_trans.py http://pastie.org/2366059
+[13.08.2011 16:21:20]<Mkaysi> Only 1 error and it's because of weird chars in Ctcps.
+[13.08.2011 16:26:42]<MichealH> * Sectron (sectron@services.) has joined #test
+[13.08.2011 16:26:42]<MichealH> * services. gives channel operator status to Sectron
+[13.08.2011 16:26:42]<MichealH> -services./Wallops- Synced with network in 0.00 seconds.
+[13.08.2011 16:26:46]<MichealH> Fastest there is :D
+[13.08.2011 16:28:27]<Supernova> MichealH, boring

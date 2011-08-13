@@ -21,5 +21,4 @@ class Autovoice(handler.Handler):
 		lav = self.client.properties.get('autovoice')[0].split(',')
 		for i in range(0, len(lav)):
 			if msg_words[0] == lav[i]:
-				self.commands.notice(lav[i], "INFO: {0} has joined {1}!".format(nick, lav[i]))
 				self.commands.mode("+v {0}".format(nick), lav[i])

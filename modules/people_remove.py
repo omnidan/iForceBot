@@ -18,7 +18,7 @@ class People_remove(handler.Handler):
 
 			target = nick
 		
-		if self.commands.getcmd(msg_words[0], 'remove') == 1:
+		if self.commands.getcmd(msg_words[0], 'remove') == 1 and self.commands.getrank(nick) >= 3:
 			f_name = msg_words[1].lower()
 			output = open("./people/{0}.txt".format(f_name), 'w')
 			output.write('')
