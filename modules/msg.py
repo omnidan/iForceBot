@@ -6,7 +6,7 @@
 import handler
 
 
-class Ping(handler.Handler):
+class Msgy(handler.Handler):
 	def privmsg(self, words):
 		line = ' '.join(words)
 		msg = line.split(':')[2]
