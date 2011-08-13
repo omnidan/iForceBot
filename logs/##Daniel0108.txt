@@ -1,0 +1,9 @@
+[13.08.2011 12:39:18]<Daniel0108> !setrank ExampleBot 1
+[13.08.2011 12:39:18]<TourBot> Daniel0108: Error: I am only a bot, please don't think I'm intelligent :)
+[13.08.2011 12:39:18]<ArtaBot> Daniel0108: Error: I am only a bot, please don't think I'm intelligent :)
+[13.08.2011 12:39:19]<KowalskiJ> Daniel0108: Error: "setrank" is not a valid command.
+[13.08.2011 12:39:27]<Daniel0108> !setrank ExampleBot 8
+[13.08.2011 12:39:27]<ArtaBot> Daniel0108: Error: I am only a bot, please don't think I'm intelligent :)
+[13.08.2011 12:39:27]<TourBot> Daniel0108: Error: I am only a bot, please don't think I'm intelligent :)
+[13.08.2011 12:39:28]<KowalskiJ> Daniel0108: Error: "setrank" is not a valid command.
+[13.08.2011 12:39:33]<Mkaysi> Yes

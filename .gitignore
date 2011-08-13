@@ -1,3 +1,6 @@
+# Daniel0108's bot
+TheDarkForce.py
+
 # TheEyes' bot
 iForceBot.py
 
@@ -6,3 +9,9 @@ iForceBot.py
 
 # Logs
 logs/*
+
+# Factoids
+people/*
+
+# Goodies
+goodbot/*
