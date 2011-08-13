@@ -21,5 +21,8 @@ class Ranks(handler.Handler):
 			if self.commands.getcmd(msg_words[0],'getrank'):
 				self.commands.privmsg(target, "%s: %s" % (msg_words[1], self.commands.getrank(msg_words[1])))
 			elif self.commands.getcmd(msg_words[0],'setrank'):
-				self.commands.setrank(msg_words[1], int(msg_words[2]))
-				self.commands.privmsg(target, "Rank of %s successfully set to %d." % (msg_words[1], int(msg_words[2])))
+				if self.commands.getrank(nick) >= int(msg_words[2]):
+					self.commands.setrank(msg_words[1], int(msg_words[2]))
+					self.commands.privmsg(target, "Rank of %s successfully set to %d." % (msg_words[1], int(msg_words[2])))
+				else:
+					self.commands.msg("err_permissions", target, nick)

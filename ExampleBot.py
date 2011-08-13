@@ -13,7 +13,7 @@ bot = irc.Client(
 	host='irc.freenode.net',
 	modules=['module_loader', 'general', 'ranks', 'ping', 'time', 'channel_main', 'channel_op', 'log_main']
 )
-bot.properties['autojoin'] = ['#theblackmatrix-admin']
+bot.properties['autojoin'] = ['##daniel0108']
 bot.properties['prefix'] = '!'
 
 bot.connect()
