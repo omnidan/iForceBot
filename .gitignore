@@ -1,0 +1,8 @@
+# TheEyes' bot
+iForceBot.py
+
+# Python compiled
+*.pyc
+
+# Logs
+logs/*

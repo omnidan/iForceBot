@@ -48,3 +48,18 @@ class Channel_op(handler.Handler):
 					self.commands.privmsg("ChanServ", "DEVOICE {0} {1}".format(target, msg_words[1]))
 				else:
 					self.commands.privmsg("ChanServ", "DEVOICE {0} {1}".format(target, nick))
+                        temp_str = self.client.properties.get('prefix')
+                        temp_str += 'quiet'
+                        if msg_words[0] == temp_str:
+                                if len(msg_words) >= 2:
+                                        self.commands.privmsg("ChanServ", "QUIET {0} {1}".format(target, msg_words[1]))
+                                else:
+                                        self.commands.privmsg("ChanServ", "QUIET {0} {1}".format(target, nick))
+                        temp_str = self.client.properties.get('prefix')
+                        temp_str += 'unquiet'
+                        if msg_words[0] == temp_str:
+                                if len(msg_words) >= 2:
+                                        self.commands.privmsg("ChanServ", "UNVOICE {0} {1}".format(target, msg_words[1]))
+                                else:
+                                        self.commands.privmsg("ChanServ", "UNVOICE {0} {1}".format(target, nick))
+
