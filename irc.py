@@ -182,8 +182,8 @@ class Commands(object):
 	def reconnect(self):
 		self.client.connect()
 
-	def kick(self, channel, message):
-		self.client.send("KICK {0} {1} :{2}".format(channel, message))
+	def kick(self, channel, target, message):
+		self.client.send("KICK {0} {1} :{2}".format(channel, target, message))
 
 	def getcmd(self, message, cmd):
 		message = message.lower()
