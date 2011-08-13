@@ -6,7 +6,7 @@
 import handler
 
 
-class msg(handler.Handler):
+class Msg(handler.Handler):
 	def privmsg(self, words):
 		line = ' '.join(words)
 		msg = line.split(':')[2]
