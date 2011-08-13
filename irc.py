@@ -136,6 +136,10 @@ class Commands(object):
 	def __init__(self, client):
 		self.client = client
 
+	def sendraw(self, message):
+		# Do not use it unless you know what you are doing!
+		self.client.send(message)
+
 	def loadmodule(self, module):
 		self.client.load_module(module)
 
