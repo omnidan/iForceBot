@@ -61,4 +61,8 @@ class Channel_op(handler.Handler):
                                         self.commands.privmsg("ChanServ", "UNQUIET {0} {1}".format(target, msg_words[1]))
                                 else:
                                         self.commands.privmsg("ChanServ", "UNQUIET {0} {1}".format(target, nick))
-			
+			temp_str = self.client.properties.get('prefix')
+			temp_str += 'kick'
+                        if msg_words[0] == temp_str:
+                                if len(msg_words) >= 2:
+                                        self.commands.kick(target, msg_words[1], msg_words[2])
