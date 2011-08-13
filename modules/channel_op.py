@@ -15,10 +15,9 @@ class Channel_op(handler.Handler):
 		target = words[2]
 
 		if target.find('#') != 0:
-
 			target = nick
 		
-		if len(msg_words) >= 1:
+		if len(msg_words) >= 1 and self.commands.getrank(nick) >= 4:
 			temp_str = self.client.properties.get('prefix')
 			temp_str += 'op'
 			if msg_words[0] == temp_str:

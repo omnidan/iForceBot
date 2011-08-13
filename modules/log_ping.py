@@ -23,10 +23,9 @@ class Log_ping(handler.Handler):
 		target = words[2]
 
 		if target.find('#') != 0:
-
 			target = nick
 
-		if self.search(' '.join(msg_words), self.pnick) != -1:				
+		if self.search(' '.join(msg_words), self.pnick) != -1:
 			import time
 			
 			output = open("./logs/{0}.txt".format(self.pnick), 'a')
