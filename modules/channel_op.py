@@ -122,6 +122,7 @@ class Channel_op(handler.Handler):
                         temp_str += 'kban'
                         if msg_words[0] == temp_str and self.commands.getrank(nick) <= 4:
                                 self.commands.notice(nick, "ERROR: You do not have the permissions to do this command.")
+<<<<<<< HEAD
 			temp_str = self.client.properties.get('prefix')
 			temp_str += 'unban'
                         if msg_words[0] == temp_str and self.commands.getrank(nick) <= 4:
@@ -130,3 +131,6 @@ class Channel_op(handler.Handler):
                         temp_str += 'ban'
                         if msg_words[0] == temp_str and self.commands.getrank(nick) <= 4:
                                 self.commands.notice(nick, "ERROR: You do not have the permissions to do this command.")
+=======
+
+>>>>>>> 60d9d88bf2c8f027c29990adad4e0cb6bf69acb1

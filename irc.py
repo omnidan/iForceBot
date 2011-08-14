@@ -188,6 +188,10 @@ class Commands(object):
 
 	def kick(self, channel, target, message):
 		self.client.send("KICK {0} {1} :{2}".format(channel, target, message))
+	
+	def kban(self, channel, target, message):
+		self.client.send("MODE {0} +b $a:{1}".format(channel, target))
+		self.client.send("KICK {0} {1} :{2}".format(channel, target, message)) 
 
         def remove(self, channel, target, message):
                 self.client.send("REMOVE {0} {1} :{2}".format(channel, target, message))
