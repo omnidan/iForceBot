@@ -85,6 +85,8 @@ class Channel_op(handler.Handler):
                         if msg_words[0] == temp_str:
                                 if len(msg_words) >= 2:
                                         self.commands.mode("+b $x:%s" % msg_words[1], target)
+				else:
+					self.commands.privmsg(target, "{0}: You must enter 2 or more arguments.".format(nick))
 		else:
 			temp_str = self.client.properties.get('prefix')
 			temp_str += 'kick'
