@@ -22,4 +22,4 @@ class General(handler.Handler):
 		self.commands.join(self.client.properties.get('autojoin'))
 		joinlist = self.client.properties.get('autojoin')[0].split(",")
 		for i in range(0, len(joinlist)):
-			self.commands.privmsg("ChanServ", "OP {0} {1}".format(joinlist[i], self.client.nick))
+		
