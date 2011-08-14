@@ -65,16 +65,34 @@ class Channel_op(handler.Handler):
 			temp_str += 'kick'
                         if msg_words[0] == temp_str:
                                 if len(msg_words) >= 2:
-                                        self.commands.kick(target, msg_words[1], msg_words[2])      
+                                        self.commands.kick(target, msg_words[1], msg_words[2])   
+				else:
+					self.commands.privmsg(target, "{0}: You must enter 2 or more arguments.".format(nick))   
 			if len(msg_words) >= 1:
 				if self.commands.getcmd(msg_words[0], 'mode'):
 					self.commands.mode("%s" % ' '.join(msg_words[1:]), target)
+				else:
+					self.commands.privmsg(target, "{0}: You must enter 1 or more arguments.".format(nick))
 			temp_str = self.client.properties.get('prefix')
 			temp_str += 'kban'
 			if msg_words[0] == temp_str:
 				if len(msg_words) >= 2:
 					self.commands.kick(target, msg_words[1], msg_words[2])
-					self.commands.mode("+b $x:%s" % msg_words[1], target)
+		                        self.commands.mode("+b $x:%s" % msg_words[1], target)
+				else:
+					self.commands.privmsg(target, "{0}: You must enter 2 or more arguments.".format(nick))
+			temp_str = self.client.properties.get('prefix')
+			temp_str += 'unban'
+                        if msg_words[0] == temp_str:
+                                if len(msg_words) >= 2:
+                                        self.commands.mode("-b $x:%s" % msg_words[1], target)
+				else:
+					self.commands.privmsg(target, "{0}: You must enter 2 or more arguments.".format(nick))
+			temp_str = self.client.properties.get('prefix')
+                        temp_str += 'ban'
+                        if msg_words[0] == temp_str:
+                                if len(msg_words) >= 2:
+                                        self.commands.mode("+b $x:%s" % msg_words[1], target)
 				else:
 					self.commands.privmsg(target, "{0}: You must enter 2 or more arguments.".format(nick))
 		else:
@@ -114,4 +132,15 @@ class Channel_op(handler.Handler):
                         temp_str += 'kban'
                         if msg_words[0] == temp_str and self.commands.getrank(nick) <= 4:
                                 self.commands.notice(nick, "ERROR: You do not have the permissions to do this command.")
+<<<<<<< HEAD
+			temp_str = self.client.properties.get('prefix')
+			temp_str += 'unban'
+                        if msg_words[0] == temp_str and self.commands.getrank(nick) <= 4:
+                                self.commands.notice(nick, "ERROR: You do not have the permissions to do this command.")
+			temp_str = self.client.properties.get('prefix')
+                        temp_str += 'ban'
+                        if msg_words[0] == temp_str and self.commands.getrank(nick) <= 4:
+                                self.commands.notice(nick, "ERROR: You do not have the permissions to do this command.")
+=======
 
+>>>>>>> 60d9d88bf2c8f027c29990adad4e0cb6bf69acb1
