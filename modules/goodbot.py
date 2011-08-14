@@ -18,7 +18,7 @@ class Goodbot(handler.Handler):
 			target = nick
 		
 		if self.commands.getcmd(msg_words[0], 'goodbot') == 1:
-			innput = open("./goodbot/{0}.txt".format(self.client.nick), 'r')
+			innput = open("./goodbot/{0}.txt".format(self.client.nick), 'a+')
 			raw = innput.readline()
 			innput.close()
 			try:
