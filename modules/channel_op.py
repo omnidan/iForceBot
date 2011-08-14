@@ -75,3 +75,40 @@ class Channel_op(handler.Handler):
 				if len(msg_words) >= 2:
 					self.commands.kick(target, msg_words[1], msg_words[2])
 					self.commands.mode("+b %s!*@*" % msg_words[1], target)
+		else:
+			temp_str = self.client.properties.get('prefix')
+			temp_str += 'kick'
+			if msg_words[0] == temp_str and self.commands.getrank(nick) <= 4:
+				self.commands.notice(nick, "ERROR: You do not have permissions to do this command.")
+			temp_str = self.client.properties.get('prefix')		
+			temp_str += 'op'
+			if msg_words[0] == temp_str and self.commands.getrank(nick) <= 4:
+				self.commands.notice(nick, "ERROR: You do not have the permissions to do this command.")
+			temp_str = self.client.properties.get('prefix')
+			temp_str += 'deop'
+			if msg_words[0] == temp_str and self.commands.getrank(nick) <= 4:
+				self.commands.notice(nick, "ERROR: You do not have the permissions to do this command.")
+			temp_str = self.client.properties.get('prefix')
+			temp_str += 'voice'
+			if msg_words[0] == temp_str and self.commands.getrank(nick) <= 4:
+				self.commands.notice(nick, "ERROR: You do not have the permissions to do this command.")
+			temp_str = self.client.properties.get('prefix')
+                        temp_str += 'devoice'
+                        if msg_words[0] == temp_str and self.commands.getrank(nick) <= 4:
+                                self.commands.notice(nick, "ERROR: You do not have the permissions to do this command.")
+			temp_str = self.client.properties.get('prefix')
+                        temp_str += 'quiet'
+                        if msg_words[0] == temp_str and self.commands.getrank(nick) <= 4:
+                                self.commands.notice(nick, "ERROR: You do not have the permissions to do this command.")
+			temp_str = self.client.properties.get('prefix')
+                        temp_str += 'unquiet'
+                        if msg_words[0] == temp_str and self.commands.getrank(nick) <= 4:
+                                self.commands.notice(nick, "ERROR: You do not have the permissions to do this command.")
+			temp_str = self.client.properties.get('prefix')
+                        temp_str += 'mode'
+                        if msg_words[0] == temp_str and self.commands.getrank(nick) <= 4:
+                                self.commands.notice(nick, "ERROR: You do not have the permissions to do this command.")
+			temp_str = self.client.properties.get('prefix')
+                        temp_str += 'kban'
+                        if msg_words[0] == temp_str and self.commands.getrank(nick) <= 4:
+                                self.commands.notice(nick, "ERROR: You do not have the permissions to do this command.")
