@@ -19,7 +19,7 @@ class Commands_basic(handler.Handler):
                 if len(msg_words) >= 1:
                         if self.commands.getcmd(msg_words[0], 'invite') and self.commands.getrank(nick) >= 4:
                                 self.commands.invite(target, "%s" % msg_words[1])
-			elif self.commands.getcmd(msg_words[0], 'invite') and self.commands.getrank(nick) <=4
+			elif self.commands.getcmd(msg_words[0], 'invite') and self.commands.getrank(nick) <= 4:
         			self.commands.notice(nick, "ERROR: You do not have the permissions for this command.")   			
 	
                 if len(msg_words) >= 1:
