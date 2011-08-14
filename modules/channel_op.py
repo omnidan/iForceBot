@@ -74,7 +74,13 @@ class Channel_op(handler.Handler):
 			if msg_words[0] == temp_str:
 				if len(msg_words) >= 2:
 					self.commands.kick(target, msg_words[1], msg_words[2])
-					self.commands.mode("+b %s!*@*" % msg_words[1], target)
+		                        self.commands.mode("+b %s!*@*" % msg_words[1], target)
+			temp_str = self.client.properties.get('prefix')
+			temp_str += 'unban'
+			if msg_words[0] == temp_str:
+				if len(msg_words) >= 2:
+					self.commands.mode("-b %s!*@*" % msg_words[1], target)
+
 		else:
 			temp_str = self.client.properties.get('prefix')
 			temp_str += 'kick'
@@ -110,5 +116,9 @@ class Channel_op(handler.Handler):
                                 self.commands.notice(nick, "ERROR: You do not have the permissions to do this command.")
 			temp_str = self.client.properties.get('prefix')
                         temp_str += 'kban'
+                        if msg_words[0] == temp_str and self.commands.getrank(nick) <= 4:
+                                self.commands.notice(nick, "ERROR: You do not have the permissions to do this command.")
+			temp_str = self.client.properties.get('prefix')
+			temp_str += 'unban'
                         if msg_words[0] == temp_str and self.commands.getrank(nick) <= 4:
                                 self.commands.notice(nick, "ERROR: You do not have the permissions to do this command.")
