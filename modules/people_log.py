@@ -7,6 +7,10 @@ import handler
 
 
 class People_log(handler.Handler):
+	def __init__(self, *args1, **args2):
+		super(self.__class__, self).__init__(*args1, **args2)
+		self.priority = 0
+
 	def join(self, words):
                 line = ' '.join(words)
                 msg = line.split(':')[2]

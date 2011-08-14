@@ -248,7 +248,7 @@ class Commands(object):
 		userfile.write('{0}'.format(wrank))
 		userfile.close()
 
-        def msg(self, title, target, nick=False):
+        def msg(self, title, target, nick=False, notice=False):
                 output = open("./messages/%s.msg" % title.lower(), 'r+')
                 try:
                         msgs = output.readlines()
@@ -260,7 +260,10 @@ class Commands(object):
 			else:
 				msg = ""
 			msg += line
-                        self.privmsg(target, msg)
+			if notice == True:
+				self.notice(target, msg)
+			else:
+                        	self.privmsg(target, msg)
 
 class IRCError(Exception):
 	def __init__(self, text):
