@@ -7,5 +7,5 @@ TheDarkForce.py
 # Logs, Factoids, Goodies, Channels, and so on...
 *.txt
 
-# TheEyes' and nyuszika7h's bot files (mode commit)
+# TheEyes' bot files (mode commit)
 iForceBot.py
