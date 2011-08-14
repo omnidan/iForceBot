@@ -1,2 +1,9 @@
-chmod +x $1.py
-python ./$1.py
+#!/bin/sh
+if [ $# -eq 0 ]
+then
+    echo "You should specify the bot's file (e.g. 'iForceBot.py') after 'startbot'."
+    exit 1
+fi
+
+chmod +x $1
+python ./$1
