@@ -4,14 +4,8 @@ TheDarkForce.py
 # Python compiled
 *.pyc
 
-# Logs
-logs/*.txt
-
-# Factoids
-people/*.txt
-
-# Goodies
-goodbot/*.txt
+# Logs, Factoids, Goodies, Channels, and so on...
+*.txt
 
 # TheEyes' bot files (mode commit)
 iForceBot.py
