@@ -16,15 +16,20 @@ class Commands_basic(handler.Handler):
 
                 if target.find('#') != 0:
                         target = nick
-                if len(msg_words) >= 1 and self.commands.getrank(nick) >= 4:
-                        if self.commands.getcmd(msg_words[0], 'invite'):
+                if len(msg_words) >= 1:
+                        if self.commands.getcmd(msg_words[0], 'invite') and self.commands.getrank(nick) >= 4:
                                 self.commands.invite(target, "%s" % msg_words[1])
-           
-                if len(msg_words) >= 1 and self.commands.getrank(nick) >= 5:
-                        if self.commands.getcmd(msg_words[0], 'nick'):
+			elif self.commands.getcmd(msg_words[0], 'invite') and self.commands.getrank(nick) <= 4:
+        			self.commands.notice(nick, "ERROR: You do not have the permissions for this command.")   			
+	
+                if len(msg_words) >= 1:
+                        if self.commands.getcmd(msg_words[0], 'nick') and self.commands.getrank(nick) >= 5:
                                 self.commands.nick("%s" % msg_words[1])
+			elif self.commands.getcmd(msg_words[0], 'nick') and self.commands.getrank(nick) <= 5:
+				self.commands.notice(nick, "ERROR: You do not have the permissions for this command.")
 
-
-                if len(msg_words) >= 1 and self.commands.getrank(nick) >= 2:
-                        if self.commands.getcmd(msg_words[0], 'msg'):
-                                self.commands.privmsg(msg_words[1], "<%s> %s" % (nick, ' '.join(msg_words[2:])))
+                if len(msg_words) >= 1:
+                        if self.commands.getcmd(msg_words[0], 'msg') and self.commands.getrank(nick) >= 2:
+				self.commands.privmsg(msg_words[1], "<%s> %s" % (nick, ' '.join(msg_words[2:])))
+			elif self.commands.getcmd(msg_words[0], 'msg') and self.commands.getrank(nick) <= 2:
+				self.commands.notice(nick, "ERROR: You do not have the permissions for this command.")
