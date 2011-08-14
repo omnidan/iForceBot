@@ -6,7 +6,7 @@ TheDarkForce.py
 
 # Logs, Factoids, Goodies, Channels, and so on...
 *.txt
-users/*
+
 # TheEyes' bot files (mode commit)
 iForceBot.py
 
@@ -18,3 +18,6 @@ MHMirror.py
 
 # No idea what is this, probably also related to vim
 *.swo
+
+# Lock files
+*~
