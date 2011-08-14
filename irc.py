@@ -245,7 +245,7 @@ class Commands(object):
 		userfile.close()
 
         def msg(self, title, target, nick=False):
-                output = open("./messages/%s.txt" % title.lower(), 'r+')
+                output = open("./messages/%s.msg" % title.lower(), 'r+')
                 try:
                         msgs = output.readlines()
                 finally:
