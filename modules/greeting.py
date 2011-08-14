@@ -6,7 +6,7 @@
 import handler
 
 
-class People_log(handler.Handler):
+class Greeting(handler.Handler):
 	def join(self, words):
                 line = ' '.join(words)
                 msg = line.split(':')[2]
@@ -22,9 +22,7 @@ class People_log(handler.Handler):
 			users = output.readlines()
 		finally:
 			output.close()
-		if users.count("%s\n" % nick) != 1:
-			output = open("./people/%s.txt" % msg.upper(), 'a')
-			try:
-				output.write("%s\n" % nick)
-			finally:
-				output.close()
+		if users.count("%s\n" % nick) == 1:
+			self.commands.privmsg(msg, "I remember you, %s!" % nick)
+		else:
+			self.commands.privmsg(msg, "Welcome, %s!" % nick)

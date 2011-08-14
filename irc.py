@@ -253,7 +253,7 @@ class Commands(object):
 			else:
 				msg = ""
 			msg += line
-                        self.privmsg(target, msg) 
+                        self.privmsg(target, msg)
 
 class IRCError(Exception):
 	def __init__(self, text):
