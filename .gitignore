@@ -6,9 +6,22 @@ TheDarkForce.py
 
 # Logs, Factoids, Goodies, Channels, and so on...
 *.txt
-users/*
+
 # TheEyes' bot files (mode commit)
 iForceBot.py
 
 # MichealH's bot.
 MHMirror.py
+
+# vim swap files
+*.swp
+
+# No idea what is this, probably also related to vim
+*.swo
+
+# Lock files
+<<<<<<< HEAD
+~*
+=======
+*~
+>>>>>>> nyuszika7h/master
