@@ -1,2 +1,2 @@
-chmod +x $1.py
+chmod +x $1
 python ./$1
