@@ -21,10 +21,12 @@ class Quit(handler.Handler):
 		if len(msg_words) >= 1 and self.commands.getrank(nick) >= 6:
 			if self.commands.getcmd(msg_words[0], 'quit') == 1:
 				self.commands.notice(nick, "Okay... Bye :)")
-				self.commands.quit(nick, msg_words[1])
+				self.commands.quit(' '.join(msg_words[1:]))
 				self.commands.disconnect()
 			if self.commands.getcmd(msg_words[0], 'restart') == 1:
 				self.commands.notice(nick, "I'm restarting :)")
-				self.commands.quit(nick, msg_words[1])
+				self.commands.quit(' '.join(msg_words[1:]))
 				self.commands.disconnect()
 				self.commands.reconnect()
+		elif len(msg_words) >= 1 and self.commands.getrank(nick) <= 6:
+			self.commands.notice(nick, "ERROR: You do not have the permissions for that.")
