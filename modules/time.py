@@ -23,4 +23,4 @@ class Time(handler.Handler):
 			temp_str += 'time'
 			if msg_words[0] == temp_str:
 				import time
-				self.commands.privmsg(target, time.strftime(self.commands.getmsg("mod_time", getmsg=True)))
+				self.commands.privmsg(target, time.strftime(self.commands.msg("mod_time", getmsg=True)[0]))

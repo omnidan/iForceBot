@@ -269,14 +269,18 @@ class Commands(object):
         def msg(self, title, target=False, nick=False, notice=False, getmsg=False):
 		if getmsg == False and target == False:
 			return False
-		if title.isalnum():
-			output = open("./messages/%s.msg" % title.lower(), 'r+')
-			try:
-				msgs = output.readlines()
-			finally:
-				output.close()
-		else:
-			return False
+
+		#title = re.sub("[^0-9a-zA-Z_]", "", title)
+		#target = re.sub("[^0-9a-zA-Z\#-]", "", target)
+
+		output = open("./messages/%s.msg" % title.lower(), 'r+')
+		try:
+			msgs = output.readlines()
+		finally:
+			output.close()
+
+		if getmsg == True:
+			return msgs
 
                 for line in msgs:
 			if nick != False:
