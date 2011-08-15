@@ -28,3 +28,5 @@ class Quit(handler.Handler):
 				self.commands.quit(msg_words[1:])
 				self.commands.disconnect()
 				self.commands.reconnect()
+		elif len(msg_words) >= 1 and self.commands.getrank(nick) <= 6:
+			self.commands.notice(nick, "ERROR: You do not have the permissions for that.")
