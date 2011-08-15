@@ -23,4 +23,4 @@ class Time(handler.Handler):
 			temp_str += 'time'
 			if msg_words[0] == temp_str:
 				import time
-				self.commands.privmsg(target, time.strftime('Today is the %d.%m.%Y. It\'s %H:%M:%S (Timezone: UTC+2)'))
+				self.commands.privmsg(target, time.strftime('Today is the %d.%m.%Y. It\'s %H:%M:%S'))
