@@ -22,7 +22,7 @@ class Client(object):
 		self.running = False
 		self.commands = Commands(client=self)
 
-		self.connection = Connection()
+		self.connection = pymongo.Connection()
 		self.db = self.connection['iForceBot']
 		
 		self.modules = []
@@ -262,16 +262,26 @@ class Commands(object):
 		except ValueError:
 			wrank = 0
 		
-		userfile = open("./users/%s.txt" nick, 'w')
+		userfile = open("./users/%s.txt", nick, 'w')
 		userfile.write('%s' % wrank)
 		userfile.close()
 
-        def msg(self, title, target, nick=False, notice=False):
-                output = open("./messages/%s.msg" % title.lower(), 'r+')
-                try:
-                        msgs = output.readlines()
-                finally:
-                        output.close()
+        def msg(self, title, target=False, nick=False, notice=False, getmsg=False):
+		if getmsg == False and target == False:
+			return False
+
+		#title = re.sub("[^0-9a-zA-Z_]", "", title)
+		#target = re.sub("[^0-9a-zA-Z\#-]", "", target)
+
+		output = open("./messages/%s.msg" % title.lower(), 'r+')
+		try:
+			msgs = output.readlines()
+		finally:
+			output.close()
+
+		if getmsg == True:
+			return msgs
+
                 for line in msgs:
 			if nick != False:
 				msg = "%s: " % nick
@@ -288,5 +298,5 @@ class IRCError(Exception):
 		self.text = text
 	
 	def __str__(self):
-		return 'IRCError: %s' self.text
+		return 'IRCError: %s' % self.text
 
