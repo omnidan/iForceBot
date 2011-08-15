@@ -266,12 +266,18 @@ class Commands(object):
 		userfile.write('%s' % wrank)
 		userfile.close()
 
-        def msg(self, title, target, nick=False, notice=False):
-                output = open("./messages/%s.msg" % title.lower(), 'r+')
-                try:
-                        msgs = output.readlines()
-                finally:
-                        output.close()
+        def msg(self, title, target=False, nick=False, notice=False, getmsg=False):
+		if getmsg == False and target == False:
+			return False
+		if title.isalnum():
+			output = open("./messages/%s.msg" % title.lower(), 'r+')
+			try:
+				msgs = output.readlines()
+			finally:
+				output.close()
+		else:
+			return False
+
                 for line in msgs:
 			if nick != False:
 				msg = "%s: " % nick
