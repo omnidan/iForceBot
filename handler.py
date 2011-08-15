@@ -8,5 +8,5 @@ class Handler(object):
 		self.client = client
 		
 		self.commands = client.commands
-		self.priority = 1
+		self.priority = 3
 		self.db = client.db
