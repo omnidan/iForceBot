@@ -21,10 +21,10 @@ class Quit(handler.Handler):
 		if len(msg_words) >= 1 and self.commands.getrank(nick) >= 6:
 			if self.commands.getcmd(msg_words[0], 'quit') == 1:
 				self.commands.notice(nick, "Okay... Bye :)")
-				self.commands.quit(nick, msg_words[1])
+				self.commands.quit(msg_words[1])
 				self.commands.disconnect()
 			if self.commands.getcmd(msg_words[0], 'restart') == 1:
 				self.commands.notice(nick, "I'm restarting :)")
-				self.commands.quit(nick, msg_words[1])
+				self.commands.quit(msg_words[1])
 				self.commands.disconnect()
 				self.commands.reconnect()
