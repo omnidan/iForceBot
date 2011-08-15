@@ -6,7 +6,7 @@
 import socket
 import os
 import re
-
+import pymongo
 
 class Client(object):
 	def __init__(self, nick=None, password=None, ident=None, realname=None, host=None, port=6667, modules=[]):
@@ -21,6 +21,9 @@ class Client(object):
 		self.connected = False
 		self.running = False
 		self.commands = Commands(client=self)
+
+		self.connection = Connection()
+		self.db = self.connection['iForceBot']
 		
 		self.modules = []
 		for module in modules:
@@ -30,24 +33,24 @@ class Client(object):
 		
 	def connect(self):
 		if self.irc is not None:
-			raise IRCError('Cannot create socket: already created')
+			raise IRCError('Cannot create socket: Already created')
 		if self.nick is None:
-			raise IRCError('Cannot connect: nick is not set')
+			raise IRCError('Cannot connect: Nick is not set')
 		if self.password is None:
-			raise IRCError('Cannot connect: nick is not set')
+			raise IRCError('Cannot connect: Password is not set')
 		if self.ident is None:
-			raise IRCError('Cannot connect: ident is not set')
+			raise IRCError('Cannot connect: Ident is not set')
 		if self.realname is None:
-			raise IRCError('Cannot connect: realname is not set')
+			raise IRCError('Cannot connect: Realname is not set')
 		if self.host is None:
-			raise IRCError('Cannot connect: host is not set')
+			raise IRCError('Cannot connect: Host is not set')
 		
 		self.irc = socket.socket()
 		self.irc.connect((self.host, self.port))
 		self.connected = True
 		self.running = True
 		self.commands.nick(self.nick)
-		self.send("USER {0} 0 0 :{1}".format(self.ident, self.realname))
+		self.send("USER %s 0 0 :%s" % (self.ident, self.realname))
 		self.listen()
 		self.connected = False
 		
@@ -62,16 +65,16 @@ class Client(object):
 		
 	def load_module(self, module):
 		if module.find('/') != -1 or module.find('\'') != -1:
-			raise IRCError('Cannot load module \'{0}\': not permitted chars'.format(module))
+			raise IRCError('Cannot load module \'%s\': Contains non-permitted chars' % module)
 		self.unload_module(module)
-		if os.path.isfile('./modules/{0}.py'.format(module)):
-			exec open('./modules/{0}.py'.format(module))
+		if os.path.isfile('./modules/%s.py' % module):
+			exec open('./modules/%s.py' % module)
 			try:
 				self.modules.append(locals()[module.capitalize()](client=self))
 			except NameError:
-				raise IRCError('Cannot load module \'{0}\': class does not exist'.format(module))
+				raise IRCError('Cannot load module \'%s\': Class does not exist' % module)
 		else:
-			raise IRCError('Cannot load module \'{0}\': file does not exist'.format(module))
+			raise IRCError('Cannot load module \'%s\': File does not exist' % module)
 		self.modules = sorted(self.modules, key=lambda module: module.priority, reverse=True)
 		
 	def unload_module(self, module):
@@ -119,14 +122,14 @@ class Client(object):
 				words = line.split(' ')
 				
 				if words[0] == "PING":
-					self.send("PONG {0}".format(words[1]))
+					self.send("PONG %s" % words[1])
 					
 				if words[1] == "433":
-					print "Nickname '{0}' is in use. Trying to use '{0}_'".format(self.nick)
+					print "Nickname '%s' is in use. Trying to use '%s_'" (self.nick, self.nick)
 					self.nick += '_'
 					self.commands.nick(self.nick)
 				elif words[1] == "NICK":
-					if words[0].find(':{0}!'.format(self.nick)) == 0:
+					if words[0].find(':%s!' % self.nick) == 0:
 						self.nick = words[2][1:]
 						print 'Nick: ' + self.nick
 						
@@ -147,13 +150,13 @@ class Commands(object):
 		self.client.unload_module(module)
 		
 	def privmsg(self, target, text):
-		self.client.send("PRIVMSG {0} :{1}".format(target, text))
+		self.client.send("PRIVMSG %s :%s" % (target, text))
 		
 	def notice(self, target, text):
-		self.client.send("NOTICE {0} :{1}".format(target, text))
+		self.client.send("NOTICE %s :%s" % (target, text))
 	
 	def nick(self, new_nick):
-		self.client.send("NICK {0}".format(new_nick))
+		self.client.send("NICK %s" % new_nick)
 
 	def join(self, channel=None):
 		if channel is None:
@@ -166,19 +169,19 @@ class Commands(object):
 	def mode(self, flags, target=None):
 		if target is None:
 			target = self.client.nick
-		self.client.send("MODE {0} {1}".format(target, flags))
+		self.client.send("MODE %s %s" % (target, flags))
 
 	def names(self, channel):
 		self.client.send("NAMES " + channel)
 
 	def part(self, channel, message=""):
-		self.client.send("PART {0} :{1}".format(channel, message))
+		self.client.send("PART %s :%s" % (channel, message))
 
 	def quit(self, message=""):
 		self.client.send("QUIT :" + message)
 
 	def invite(self, channel, nick):
-		self.client.send("INVITE {0} {1}".format(nick, channel))
+		self.client.send("INVITE %s %s" % (nick, channel))
 
 	def disconnect(self):
 		self.client.disconnect()
@@ -187,11 +190,11 @@ class Commands(object):
 		self.client.connect()
 
 	def kick(self, channel, target, message):
-		self.client.send("KICK {0} {1} :{2}".format(channel, target, message))
+		self.client.send("KICK %s %s :%s" % (channel, target, message))
 	
 	def kban(self, channel, target, message):
-		self.client.send("MODE {0} +b $a:{1}".format(channel, target))
-		self.client.send("KICK {0} {1} :{2}".format(channel, target, message)) 
+		self.client.send("MODE %s +b $a:%s" % (channel, target))
+		self.client.send("KICK %s %s :%s" % (channel, target, message)) 
 
         def remove(self, channel, target, message):
                 self.client.send("REMOVE {0} {1} :{2}".format(channel, target, message))
@@ -211,12 +214,27 @@ class Commands(object):
 		else:
 			return False
 
+	def db_open(self, collection):
+		return self.db[collection]
+
+	def db_post(self, collection, dict):
+		collection.insert(dict)
+
+	def db_update(self, collection, spec, dict, upsert=True):
+		collection.update(spec, dict, upsert)
+
+	def db_findone(self, collection, dict):
+		return collection.find_one(dict)
+
+	def db_find(self, collection, dict):
+		return collection.find(dict)
+
 	def getrank(self, nick, channel="global"):
 		# Started coding channel-based ranks, unfinished!
 		nick = nick.lower()
 		channel = channel.upper()
-		if os.path.exists("./users/{0}.txt".format(nick)) and os.path.isfile("./users/{0}.txt".format(nick)):
-			userfile = open("./users/{0}.txt".format(nick), 'r')
+		if os.path.exists("./users/%s.txt" % nick) and os.path.isfile("./users/{0}.txt".format(nick)):
+			userfile = open("./users/%s.txt" % nick, 'r')
 			rawrank = userfile.readline()
 			rawranks = userfile.readlines()
 			userfile.close()
@@ -244,8 +262,8 @@ class Commands(object):
 		except ValueError:
 			wrank = 0
 		
-		userfile = open("./users/{0}.txt".format(nick), 'w')
-		userfile.write('{0}'.format(wrank))
+		userfile = open("./users/%s.txt" nick, 'w')
+		userfile.write('%s' % wrank)
 		userfile.close()
 
         def msg(self, title, target, nick=False, notice=False):
@@ -270,5 +288,5 @@ class IRCError(Exception):
 		self.text = text
 	
 	def __str__(self):
-		return 'IRCError: {0}'.format(self.text)
+		return 'IRCError: %s' self.text
 
