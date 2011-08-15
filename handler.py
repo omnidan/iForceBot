@@ -10,3 +10,4 @@ class Handler(object):
 		self.commands = client.commands
 		self.priority = 3
 		self.db = client.db
+		self.modules = client.modules
