@@ -22,7 +22,7 @@ class Client(object):
 		self.running = False
 		self.commands = Commands(client=self)
 
-		self.connection = Connection()
+		self.connection = pymongo.Connection()
 		self.db = self.connection['iForceBot']
 		
 		self.modules = []
@@ -262,7 +262,7 @@ class Commands(object):
 		except ValueError:
 			wrank = 0
 		
-		userfile = open("./users/%s.txt" nick, 'w')
+		userfile = open("./users/%s.txt", nick, 'w')
 		userfile.write('%s' % wrank)
 		userfile.close()
 
@@ -294,5 +294,5 @@ class IRCError(Exception):
 		self.text = text
 	
 	def __str__(self):
-		return 'IRCError: %s' self.text
+		return 'IRCError: %s' % self.text
 
