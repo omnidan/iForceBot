@@ -85,8 +85,6 @@ class Channel_op(handler.Handler):
                         if msg_words[0] == temp_str:
                                 if len(msg_words) >= 2:
                                         self.commands.mode("+b $x:%s" % msg_words[1], target)
-		elif self.commands.getrank(nick) < 4:
-			self.commands.msg("err_permissions", nick, notice=True)
 		else:
 			temp_str = self.client.properties.get('prefix')
 			temp_str += 'kick'
