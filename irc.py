@@ -270,8 +270,8 @@ class Commands(object):
 		if getmsg == False and target == False:
 			return False
 
-		#title = re.sub("[^0-9a-zA-Z_]", "", title)
-		#target = re.sub("[^0-9a-zA-Z\#-]", "", target)
+		title = re.sub("[^0-9a-zA-Z_]", "", title)
+		target = re.sub("[^0-9a-zA-Z\#-]", "", target)
 
 		output = open("./messages/%s.msg" % title.lower(), 'r+')
 		try:
