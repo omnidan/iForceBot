@@ -229,6 +229,16 @@ class Commands(object):
 	def db_find(self, collection, dict):
 		return collection.find(dict)
 
+	def getvar(self, variable):
+		variable = variable.lower()
+		col = self.db_open("iforcebot_vars")
+		return self.db_findone(col, {"var": variable})["con"]
+
+	def setvar(self, variable, content):
+		variable = variable.lower()
+		col = self.db_open("iforcebot_vars")
+		self.db_update(col, {"var": variable}, {"$set": {"con": content}})
+
 	def getrank(self, nick):
 		nick = nick.lower()
 		col = self.db_open("iforcebot_users")
