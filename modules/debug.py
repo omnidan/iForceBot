@@ -46,3 +46,8 @@ class Debug(handler.Handler):
 							self.commands.msg("error", target, nick)
 					else:
 						self.commands.msg("err_permissions", target, nick)
+				elif self.commands.getcmd(msg_words[0], 'exec'):
+					if self.commands.getrank(nick) >= 7:
+						self.commands.privmsg(target, "%s: Executing '%s'. Output: %s" % (nick, ' '.join(msg_words[1:]), eval(' '.join(msg_words[1:]))))
+					else:
+						self.commands.msg("err_permissions", target, nick)
