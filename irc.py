@@ -229,8 +229,19 @@ class Commands(object):
 	def db_find(self, collection, dict):
 		return collection.find(dict)
 
-	def getvar(self, variable):
+	def getchvar(self, channel, variable):
+		self.getvar(variable, channel)
+
+	def setchvar(self, channel, variable, content):
+		self.setvar(variable, content, channel)
+
+	def getvar(self, variable, channel=None):
 		variable = variable.lower()
+		variable = re.sub("[^0-9a-z_]", "", variable)
+		if channel != None:
+			channel = channel.lower()
+			channel = re.sub("[^0-9a-z\#-]", "", channel)
+			variable = channel + "." + variable
 		col = self.db_open("iforcebot_vars")
 		rawresult = self.db_findone(col, {"var": variable})
 		if rawresult != None:
@@ -238,8 +249,13 @@ class Commands(object):
 		else:
 			return None
 
-	def setvar(self, variable, content):
+	def setvar(self, variable, content, channel=None):
 		variable = variable.lower()
+		variable = re.sub("[^0-9a-z_]", "", variable)
+		if channel != None:
+			channel = channel.lower()
+			channel = re.sub("[^0-9a-z\#-]", "", channel)
+			variable = channel + "." + variable
 		col = self.db_open("iforcebot_vars")
 		self.db_update(col, {"var": variable}, {"$set": {"con": content}})
 
