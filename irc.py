@@ -286,7 +286,6 @@ class Commands(object):
 			return False
 
 		title = re.sub("[^0-9a-zA-Z_]", "", title)
-		target = re.sub("[^0-9a-zA-Z\#-]", "", target)
 
 		output = open("./messages/%s.msg" % title.lower(), 'r+')
 		try:
@@ -296,6 +295,8 @@ class Commands(object):
 
 		if getmsg == True:
 			return msgs
+
+		target = re.sub("[^0-9a-zA-Z\#-]", "", target)
 
                 for line in msgs:
 			if nick != False:
