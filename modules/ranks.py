@@ -48,7 +48,7 @@ class Ranks(handler.Handler):
 			elif len(msg_words) >= 1 and msg_words[0] == "addowner":
 				self.commands.privmsg(nick, "Not enough arguments, try: 'addowner <CODE> <USERNAME>'.")
 				self.addowner(nick)
-		elif self.commands.getvar("owner_verified") == True:
+		elif self.commands.getvar("owner_verified") == True and msg_words[0] == "addowner":
 			self.commands.privmsg(nick, "You already verified the owner of this bot")
 
 		if target.find('#') != 0:
