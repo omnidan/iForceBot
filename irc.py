@@ -232,7 +232,11 @@ class Commands(object):
 	def getvar(self, variable):
 		variable = variable.lower()
 		col = self.db_open("iforcebot_vars")
-		return self.db_findone(col, {"var": variable})["con"]
+		rawresult = self.db_findone(col, {"var": variable})
+		if rawresult != None:
+			return rawresult["con"]
+		else:
+			return None
 
 	def setvar(self, variable, content):
 		variable = variable.lower()
