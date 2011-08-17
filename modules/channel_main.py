@@ -33,3 +33,16 @@ class Channel_main(handler.Handler):
 			if msg_words[0] == temp_str:
 				self.commands.part(msg_words[1], "Cycling")
 				self.commands.join(msg_words[1])
+		elif len(msg_words) >= 1 and self.commands.getrank(nick) <=3:
+			temp_str = self.client.properties.get('prefix')
+			temp_str += 'join'
+			if msg_words[0] == temp_str:
+				self.commands.msg("err_permissions", nick, notice=True)
+			temp_str = self.client.properties.get('prefix')
+                        temp_str += 'part'
+                        if msg_words[0] == temp_str:
+                                self.commands.msg("err_permissions", nick, notice=True)
+			temp_str = self.client.properties.get('prefix')
+                        temp_str += 'cycle'
+                        if msg_words[0] == temp_str:
+                                self.commands.msg("err_permissions", nick, notice=True)
