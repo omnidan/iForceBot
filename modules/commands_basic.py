@@ -5,9 +5,11 @@
 
 
 import handler
+import inspect
 
 class Commands_basic(handler.Handler):
         def privmsg(self, words):
+		global inspect
                 line = ' '.join(words)
                 msg = line.split(':')[2]
                 msg_words = msg.split(' ')
@@ -41,6 +43,9 @@ class Commands_basic(handler.Handler):
 
 		if len(msg_words) >= 1:
                         if self.commands.getcmd(msg_words[0], 'modules') and self.commands.getrank(nick) >= 2:
-                                self.commands.privmsg(target, "Modules loaded: %s" % self.client.modules)
+				msg = "Modules loaded: "
+				for mod in self.client.modules:
+					msg += mod.__class__.__name__ + ", "
+                                self.commands.privmsg(target, msg)
                         elif self.commands.getcmd(msg_words[0], 'modules') and self.commands.getrank(nick) <= 2:
                                 self.commands.msg("err_permissions", nick, notice=True)
