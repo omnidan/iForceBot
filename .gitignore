@@ -20,8 +20,8 @@ MHMirror.py
 *.swo
 
 # Lock files
-<<<<<<< HEAD
 ~*
-=======
 *~
->>>>>>> nyuszika7h/master
+
+# Mkaysi's bot.
+OtusForceBot.py
