@@ -215,7 +215,7 @@ class Commands(object):
 			return False
 
 	def db_open(self, collection):
-		return self.db[collection]
+		return self.client.db[collection]
 
 	def db_post(self, collection, dict):
 		collection.insert(dict)
@@ -229,31 +229,18 @@ class Commands(object):
 	def db_find(self, collection, dict):
 		return collection.find(dict)
 
-	def getrank(self, nick, channel="global"):
-		# Started coding channel-based ranks, unfinished!
+	def getrank(self, nick):
 		nick = nick.lower()
-		channel = channel.upper()
-		if os.path.exists("./users/%s.txt" % nick) and os.path.isfile("./users/{0}.txt".format(nick)):
-			userfile = open("./users/%s.txt" % nick, 'r')
-			rawrank = userfile.readline()
-			rawranks = userfile.readlines()
-			userfile.close()
-			if channel == "GLOBAL":
-				try:
-					rank = int(rawrank)
-				except ValueError:
-					rank = 0			
-			else:
-				for i in range(0, count(rawranks)-1, 1):
-					try:
-						if rawranks.split('::')[0].upper() == channel:
-							rank = rawranks.split('::')[1].lower()
-							break;
-					except ValueError:
-						rank = 0
-			return rank
+		col = self.db_open("iforcebot_users")
+		rawrank = self.db_findone(col, {"nick": nick})
+		if rawrank != None:
+			try:
+				rank = int(rawrank["rank"])
+			except ValueError:
+				rank = 0
 		else:
-			return 0
+			rank = 0
+		return rank
 
 	def setrank(self, nick, rank):
 		nick = nick.lower()
@@ -261,10 +248,8 @@ class Commands(object):
 			wrank = int(rank)
 		except ValueError:
 			wrank = 0
-		
-		userfile = open("./users/%s.txt", nick, 'w')
-		userfile.write('%s' % wrank)
-		userfile.close()
+		col = self.db_open("iforcebot_users")
+		self.db_update(col, {"nick": nick}, {"$set": {"rank": wrank}})
 
         def msg(self, title, target=False, nick=False, notice=False, getmsg=False):
 		if getmsg == False and target == False:

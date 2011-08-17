@@ -22,7 +22,11 @@ class Ranks(handler.Handler):
 				self.commands.privmsg(target, "%s: %s" % (msg_words[1], self.commands.getrank(msg_words[1])))
 			elif self.commands.getcmd(msg_words[0],'setrank'):
 				if self.commands.getrank(nick) >= int(msg_words[2]):
-					self.commands.setrank(msg_words[1], int(msg_words[2]))
-					self.commands.privmsg(target, "Rank of %s successfully set to %d." % (msg_words[1], int(msg_words[2])))
+					try:
+						self.commands.setrank(msg_words[1], int(msg_words[2]))
+					except ValueError:
+						self.commands.privmsg(target, "Error, rank must be an integer")
+					finally:
+						self.commands.privmsg(target, "Rank of %s successfully set to %d." % (msg_words[1], int(msg_words[2])))
 				else:
 					self.commands.msg("err_permissions", target, nick)
