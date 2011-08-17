@@ -23,16 +23,25 @@ class Channel_main(handler.Handler):
 			temp_str = self.client.properties.get('prefix')
 			temp_str += 'join'
 			if msg_words[0] == temp_str:
-				self.commands.join(msg_words[1])
+				if len(msg_words) <= 1:
+					self.commands.notice(nick, "ERROR: Please specify a channel.")
+				else:
+					self.commands.join(msg_words[1])
 			temp_str = self.client.properties.get('prefix')
 			temp_str += 'part'
 			if msg_words[0] == temp_str:
-				self.commands.part(msg_words[1], "Parting")
+				if len(msg_words) <= 1:
+					self.commands.notice(nick, "ERROR: Please specify a channel.")
+				else:
+					self.commands.part(msg_words[1], "Parting")
 			temp_str = self.client.properties.get('prefix')
 			temp_str += 'cycle'
 			if msg_words[0] == temp_str:
-				self.commands.part(msg_words[1], "Cycling")
-				self.commands.join(msg_words[1])
+				if len(msg_words) <= 1:
+					self.commands.notice(nick, "ERROR: Please specify a channel.")
+				else:
+					self.commands.part(msg_words[1], "Cycling")
+					self.commands.join(msg_words[1])
 		elif len(msg_words) >= 1 and self.commands.getrank(nick) <=3:
 			temp_str = self.client.properties.get('prefix')
 			temp_str += 'join'
