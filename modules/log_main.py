@@ -4,7 +4,7 @@
 
 
 import handler
-
+import time
 
 class Log_main(handler.Handler):
 	def privmsg(self, words):
@@ -16,9 +16,31 @@ class Log_main(handler.Handler):
 
 		if target.find('#') != 0:
 			target = nick
+
+		global time
 		
-		import time
-		
-		output = open("./logs/{0}.txt".format(target), 'a')
-		output.write("[{0}]<{1}> {2}\n".format(time.strftime('%d.%m.%Y %H:%M:%S'), nick, ' '.join(msg_words)))
+		output = open("./logs/%s.txt" % target, 'a')
+		output.write("[%s]<%s> %s\n" % (time.strftime('%d.%m.%Y %H:%M:%S'), nick, ' '.join(msg_words)))
+		output.close()
+
+	def join(self, words):
+                line = ' '.join(words)
+                nick = line.split(':')[1].split('!')[0]
+                target = words[2].split(':')[1]
+
+		global time
+
+		output = open("./logs/%s.txt" % target, 'a')
+		output.write("[%s] <-- %s joined %s\n" % (time.strftime('%d.%m.%Y %H:%M:%S'), nick, target))
+		output.close()
+
+	def part(self, words):
+                line = ' '.join(words)
+                nick = line.split(':')[1].split('!')[0]
+                target = words[2]
+
+		global time
+
+		output = open("./logs/%s.txt" % target, 'a')
+		output.write("[%s] --> %s parted %s\n" % (time.strftime('%d.%m.%Y %H:%M:%S'), nick, target))
 		output.close()

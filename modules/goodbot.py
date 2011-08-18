@@ -17,26 +17,16 @@ class Goodbot(handler.Handler):
 		if target.find('#') != 0:
 			target = nick
 		
-		if self.commands.getcmd(msg_words[0], 'goodbot') == 1:
-			innput = open("./goodbot/{0}.txt".format(self.client.nick), 'a+')
-			raw = innput.readline()
-			innput.close()
+		if self.commands.getcmd(msg_words[0], 'goodbot'):
 			try:
-				count = int(raw)
-			except ValueError:
-				count = 0
-			count += 1
-			output = open("./goodbot/{0}.txt".format(self.client.nick), 'w')
-			output.write('{0}'.format(count))
-			output.close()
-			print 'Increasing value of {0}.txt to {1}'.format(self.client.nick, count)
-			self.commands.privmsg(target, "Wooof! Thanks! Woof, Woof! :D")
+				count = int(self.commands.getvar("goodbot"))+1
+			except TypeError:
+				count = 1
+			self.commands.setvar("goodbot", count)
+			self.commands.msg("mod_goodbot_thanks", target, nick)
 		elif self.commands.getcmd(msg_words[0], 'goodies') == 1:
-			innput = open("./goodbot/{0}.txt".format(self.client.nick), 'r')
-			raw = innput.readline()
-			innput.close()
 			try:
-				count = int(raw)
-			except ValueError:
+				count = int(self.commands.getvar("goodbot"))
+			except TypeError:
 				count = 0
-			self.commands.privmsg(target, "I have {0} goodies :) Woof!".format(count))
+			self.commands.privmsg(target, self.commands.msg("mod_goodbot_goodies", getmsg=True)[0] % (nick, count))
