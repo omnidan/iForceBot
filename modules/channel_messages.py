@@ -9,7 +9,7 @@ import handler
 class Channel_messages(handler.Handler):
 	def privmsg(self, words):
 		line = ' '.join(words)
-		msg = line.split(':')[2]
+		msg = line.split(':', 2)[2]
 		msg_words = msg.split(' ')
 		nick = line.split(':')[1].split('!')[0]
 		target = words[2]
