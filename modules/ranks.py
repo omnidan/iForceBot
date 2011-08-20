@@ -56,7 +56,8 @@ class Ranks(handler.Handler):
 		
 		if len(msg_words) >= 1:
 			if self.commands.getcmd(msg_words[0],'getrank'):
-				self.commands.privmsg(target, "%s: %s" % (msg_words[1], self.commands.getrank(msg_words[1])))
+				if len(msg_words) >= 1:
+					self.commands.privmsg(target, "%s: %s has the rank %s" % (nick, msg_words[1], self.commands.getrank(msg_words[1])))
 			elif self.commands.getcmd(msg_words[0],'setrank'):
 				if self.commands.getrank(nick) >= int(msg_words[2]):
 					try:
