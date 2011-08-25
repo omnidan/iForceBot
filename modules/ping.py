@@ -28,3 +28,5 @@ class Ping(handler.Handler):
 					self.commands.msg("err_permissions", target, nick)
 			elif self.commands.getcmd(msg_words[0], 'version') == 1:
 				self.commands.msg("version", target, nick)
+			elif self.commands.getcmd(msg_words[0], 'source'):
+				self.commands.msg("source", target, nick)
