@@ -18,7 +18,7 @@ class Downloader(handler.Handler):
 		if len(msg_words) >= 0:
 			if self.commands.getcmd(msg_words[0], 'instmodule'):
 				if len(msg_words) <= 1:
-					self.commands.notice(nick, "Usage: instmodule <modulename> - Installs the selected module from the iFB module repository.")
+					self.commands.notice(nick, "Usage: %sinstmodule <modulename> - Installs the selected module from the iFB module repository." % self.client.properties.get('prefix'))
 				elif len(msg_words) >= 1:
 					import urllib2
 					try:

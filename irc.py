@@ -102,8 +102,8 @@ class Client(object):
 					if getattr(module, 'all')(words) is True:
 						break
 			except Exception as e:
-				print 'Error in module: ' + str(e)
-		
+				print 'Error in module: ' + str(e)		
+
 	def listen(self):
 		buffer = ""
 		while self.running:
@@ -185,7 +185,19 @@ class Commands(object):
 
 	def disconnect(self):
 		self.client.disconnect()
-	
+
+	def oper(self, username, password):
+		self.client.send("OPER %s %s" % (username, password))
+
+	def kill(self, nick, reason):
+		self.client.send("KILL %s %s" % (nick, reason))
+
+	def kline(self, duration, user, reason):
+		self.client.send("KLINE %s *@%s :%s" % (duration, user, reason))
+
+	def unkline(self, user):
+		self.client.send("UNKLINE *@%s" % user)
+
 	def reconnect(self):
 		self.client.connect()
 

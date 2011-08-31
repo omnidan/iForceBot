@@ -30,6 +30,8 @@ class Ranks(handler.Handler):
 		nick = line.split(':')[1].split('!')[0]
 		target = words[2]
 
+		import md5
+
 		if target == self.client.nick:
 			if len(msg_words) >= 3:
 				if msg_words[0] == "addowner":
@@ -63,13 +65,4 @@ class Ranks(handler.Handler):
 					finally:
 						self.commands.privmsg(target, "Rank of %s successfully set to %d." % (msg_words[1], int(msg_words[2])))
 				else:
-					self.commands.msg("err_permissions", target, nick)
-			elif self.commands.getcmd(msg_words[0], 'register') and self.commands.getvar("user_%s_registered" % nick) == True:
-                                self.commands.notice(nick, 'ERROR: You have already registered with the bot.')
-			elif self.commands.getcmd(msg_words[0], 'register'):
-				self.commands.setvar("user_%s_registered" % nick, True)
-				self.commands.notice(nick, "You have registered this nick with the bot.") 
-				if self.commands.getrank(nick) == 0:
-					self.commands.setrank(nick, 1)
-				elif self.commands.getrank(nick) >= 0:
-					print "Not changing the rank of user %s" % nick				
+					self.commands.msg("err_permissions", target, nick)	
