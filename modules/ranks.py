@@ -9,22 +9,20 @@ import random
 
 class Ranks(handler.Handler):
 	def addowner(self, nick):
-		if self.commands.getvar("owner_verified") != True:
-			try:
-				self.code
-			except:
-				self.code = None
-			if self.code is None:
-        	       		global string, random
-        	        	chars = string.letters + string.digits
-        	        	code = ""
-        	        	for i in range(10):
-        	        	        code = code + random.choice(chars)
-        	        	self.code = code
+		try:
+			self.code
+		except:
+			self.code = None
+		if self.code is None:
+        	       	global string, random
+        	        chars = string.letters + string.digits
+        	        code = ""
+        	        for i in range(10):
+        	        	code = code + random.choice(chars)
+        	        self.code = code
 
 			print "Your owner code is: '%s'. Please PM your bot: 'addowner %s <YOURNAME>'. Replace <YOURNAME> with your nick on IRC." % (self.code, self.code)
 			self.commands.privmsg(nick, "By the way, you need to verify that you are the real owner of the bot, please look at the bots console for a verification code.")
-
 	def privmsg(self, words):
 		line = ' '.join(words)
 		msg = line.split(':')[2]
@@ -32,7 +30,7 @@ class Ranks(handler.Handler):
 		nick = line.split(':')[1].split('!')[0]
 		target = words[2]
 
-		if target == self.client.nick and self.commands.getvar("owner_verified") != True:
+		if target == self.client.nick:
 			if len(msg_words) >= 3:
 				if msg_words[0] == "addowner":
 					if msg_words[1] == self.code:
@@ -48,8 +46,6 @@ class Ranks(handler.Handler):
 			elif len(msg_words) >= 1 and msg_words[0] == "addowner":
 				self.commands.privmsg(nick, "Not enough arguments, try: 'addowner <CODE> <USERNAME>'.")
 				self.addowner(nick)
-		elif self.commands.getvar("owner_verified") == True and msg_words[0] == "addowner":
-			self.commands.privmsg(nick, "You already verified the owner of this bot")
 
 		if target.find('#') != 0:
 			target = nick
@@ -68,3 +64,12 @@ class Ranks(handler.Handler):
 						self.commands.privmsg(target, "Rank of %s successfully set to %d." % (msg_words[1], int(msg_words[2])))
 				else:
 					self.commands.msg("err_permissions", target, nick)
+			elif self.commands.getcmd(msg_words[0], 'register') and self.commands.getvar("user_%s_registered" % nick) == True:
+                                self.commands.notice(nick, 'ERROR: You have already registered with the bot.')
+			elif self.commands.getcmd(msg_words[0], 'register'):
+				self.commands.setvar("user_%s_registered" % nick, True)
+				self.commands.notice(nick, "You have registered this nick with the bot.") 
+				if self.commands.getrank(nick) == 0:
+					self.commands.setrank(nick, 1)
+				elif self.commands.getrank(nick) >= 0:
+					print "Not changing the rank of user %s" % nick				
