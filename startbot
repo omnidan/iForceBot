@@ -6,4 +6,8 @@ then
 fi
 
 chmod +x $1
+
+while true
+do
 python ./$1
+done
